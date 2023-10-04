@@ -21,9 +21,21 @@ function add() {
         ul.appendChild(li)
 
         input.value = ''
+
+        saveToLocalStorage()
     }
 }
 
 function remove(e) {
     e.target.parentElement.remove()
+    saveToLocalStorage()
+}
+
+function saveToLocalStorage() {
+    const items = []
+    for (const item of ul.children) {
+        items.push(item.firstChild.data)
+    }
+
+    localStorage.setItem('todoList', JSON.stringify(items))
 }
